@@ -1,16 +1,16 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Header from '../components/Header.js/Header'
-import DetalhesPost from '../pages/DetalhesPost/DetalhesPost'
-import Feed from '../pages/Feed/Feed'
-import Home from '../pages/Home/Home'
-import Login from '../pages/Login/Login'
-import Signup from '../pages/Signup/Signup'
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from '../components/Header.js/Header';
+import DetalhesPost from '../pages/DetalhesPost/DetalhesPost';
+import Feed from '../pages/Feed/Feed';
+import Home from '../pages/Home/Home';
+import Login from '../pages/Login/Login';
+import Signup from '../pages/Signup/Signup';
 
 export default function Router() {
     return (
         <BrowserRouter>
-        <Header />
+            <Header />
             <Routes>
                 <Route index element={<Home />} />
                 <Route path="/login" element={<Login />} />
@@ -19,5 +19,5 @@ export default function Router() {
                 <Route path="/post/:id" element={<DetalhesPost />} />
             </Routes>
         </BrowserRouter>
-    )
+    );
 }
