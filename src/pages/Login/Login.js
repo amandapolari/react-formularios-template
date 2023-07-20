@@ -1,41 +1,51 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { irParaCadastro } from '../../Routes/coordinator';
 import { ContainerForm, ContainerLogin, Input } from './styled';
+import useForm from '../../hooks/useForm';
 
 export default function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
-
-    const onChangeEmail = (e) => {
-        setEmail(e.target.value);
-    };
-    const onChangeSenha = (e) => {
-        setPassword(e.target.value);
-    };
+    const { form, onChangeInputs, cleanFilds } = useForm({
+        email: '',
+        password: '',
+    });
 
     const enviaLogin = (e) => {
         e.preventDefault();
-        console.log({ email, password });
+        console.log(form.email, form.password);
+        // console.log(form);
+        cleanFilds();
     };
+
+    const navigate = useNavigate();
 
     return (
         <ContainerLogin>
             <ContainerForm onSubmit={enviaLogin}>
                 <label htmlFor="email">Email:</label>
                 <Input
+                    name="email"
                     id="email"
-                    value={email}
-                    onChange={onChangeEmail}
+                    value={form.email}
+                    onChange={onChangeInputs}
                     placeholder="nome@email.com"
+                    type="email"
+                    required
                 />
                 <label htmlFor="senha">Senha:</label>
                 <Input
+                    name="password"
                     id="senha"
-                    value={password}
-                    onChange={onChangeSenha}
+                    value={form.password}
+                    onChange={onChangeInputs}
                     placeholder="Digite sua senha"
+                    // pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/
+                    // "
+                    // pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$
+                    // "
+                    // title="Deve conter ao menos uma letra minúscula, uma letra maiúscula, um caractere especial e ao menos 8 dos caracteres mencionados"
+                    // type="password"
+                    required
                 />
                 <button>Fazer Login</button>
             </ContainerForm>
